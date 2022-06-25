@@ -8,6 +8,8 @@ Allows you to trade crypto options, futures, and day ahead swaps on the https://
 
 Their API documentation: https://docs.ledgerx.com/docs
 
+**Note: This code has not been tested!!! Use at your own risk!**
+
 ### Secrets
 
 LedgerX doesn't provide API keys. Instead they give you a JWT key.
