@@ -22,7 +22,7 @@ But feel free to load your secrets how you like.
 
 ### Installation
 
-Install from [pypi](https://pypi.org/project/dojima/) using pip or poetry.
+Install from [pypi](https://pypi.org/project/dojima/) using pip.
 
 ```
 pip install dojima
