@@ -1,5 +1,8 @@
 # dojima
 
+![[PyPI](https://img.shields.io/pypi/v/dojima?color=red)](https://pypi.org/project/dojima/)
+![[PyPI - Python Version](https://img.shields.io/pypi/pyversions/dojima?color=red)](https://pypi.org/project/dojima/)
+
 A bare bones SDK for trading crypto derivatives on FTX US Derivatives (Formerly LedgerX).
 
 Named after the [dojima rice exchange](https://en.wikipedia.org/wiki/D%C5%8Djima_Rice_Exchange), which was the world's first futures exchange.
