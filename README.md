@@ -50,7 +50,7 @@ print(data)
 
 **Place Order**
 
-Some things to know:
+*Some things to know:*
 * LedgerX uses `is_ask` to determine which side the order should go on. `is_ask=True` is a `sell` and `is_ask=False` is a `buy`. (don't ask me why)
 * Only `limit` orders are supported as far as I know.
 * All prices are in cents, rounded to nearest dollar. (Also don't ask me why)
