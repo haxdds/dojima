@@ -1,7 +1,7 @@
 # dojima
 
-![PyPI][(https://img.shields.io/pypi/v/dojima?color=red)](https://pypi.org/project/dojima/)
-![PyPI - Python Version][(https://img.shields.io/pypi/pyversions/dojima?color=red)](https://pypi.org/project/dojima/)
+![PyPI](https://img.shields.io/pypi/v/dojima?color=red)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dojima?color=red)
 
 A bare bones SDK for trading crypto derivatives on FTX US Derivatives (Formerly LedgerX).
 
