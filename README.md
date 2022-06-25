@@ -20,6 +20,20 @@ Follow this to get your key: https://docs.ledgerx.com/docs/api-key
 I put my keys in a `constants.py` file which I import and pass into the `LedgerX` client.
 But feel free to load your secrets how you like.
 
+### Installation
+
+Install from [pypi](https://pypi.org/project/dojima/) using pip or poetry.
+
+```
+pip install dojima
+```
+
+This also works for a poetry environment.
+
+```
+poetry add dojima
+```
+
 ### Usage
 
 **Instantiating Client**
