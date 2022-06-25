@@ -1,4 +1,4 @@
-from brokers.ledgerx import LedgerX
+from dojima.brokers import LedgerX
 from constants import LEDGERX_JWT
 
 

@@ -18,34 +18,6 @@ class LedgerX:
         self._jwt_token = jwt_token
         self._session = Session()
 
-    def _request(self, method: str, url: str, data: Optional[dict] = None) -> APIData:
-
-        headers = {"Authorization": "JWT " + self._jwt_token}
-
-        opts = {
-            "headers": headers,
-            "allow_redirects": False,
-        }
-
-        if method.upper() in ["GET", "DELETE"]:
-            opts["params"] = data
-        else:
-            opts["json"] = data
-
-        response = self._session.request(method, url, **opts)
-
-        try:
-            response.raise_for_status()
-        except HTTPError as error:
-            print("error: ", error)
-            return {}
-
-        if response.text != "":
-            return response.json()
-        else:
-            # return status code for empty response
-            return {"data": {"status": response.status_code}}
-
     def get_contracts(
         self,
         active: Optional[bool] = None,
@@ -124,7 +96,7 @@ class LedgerX:
 
         return response.get("data")
 
-    def get_contract_details(self, contract_id: str) -> APIData:
+    def get_contract_details(self, contract_id: Union[str, int]) -> APIData:
         """
         Returns contract details for a single contract ID.
         https://docs.ledgerx.com/reference/retrievecontract
@@ -141,7 +113,7 @@ class LedgerX:
 
         return response.get("data")
 
-    def get_contract_position(self, contract_id: str) -> APIData:
+    def get_contract_position(self, contract_id: Union[str, int]) -> APIData:
         """
         Returns your position for a given contract.
         https://api.ledgerx.com/trading/contracts/{id}/position
@@ -160,7 +132,7 @@ class LedgerX:
 
     def get_contract_ticker(
         self,
-        contract_id: str,
+        contract_id: Union[str, int],
         time: Optional[datetime] = None,
         asset: Optional[str] = None,
     ) -> APIData:
@@ -220,7 +192,7 @@ class LedgerX:
 
         return response.get("data")
 
-    def get_trades_for_position(self, contract_id: str) -> APIData:
+    def get_trades_for_position(self, contract_id: Union[str, int]) -> APIData:
         """
         Returns a list of your trades for a given position.
         https://docs.ledgerx.com/reference/tradesposition
@@ -253,7 +225,7 @@ class LedgerX:
 
     def create_order(
         self,
-        contract_id: str,
+        contract_id: Union[str, int],
         order_type: str,
         is_ask: bool,
         size: int,
@@ -311,7 +283,7 @@ class LedgerX:
 
         return response.get("data")
 
-    def delete_single_order(self, mid: str, contract_id: str) -> APIData:
+    def delete_single_order(self, mid: str, contract_id: Union[str, int]) -> APIData:
         """
         Cancel a single resting limit order
 
@@ -334,7 +306,7 @@ class LedgerX:
         return response.get("data")
 
     def patch_order(
-        self, mid: str, contract_id: str, price: int, size: int
+        self, mid: str, contract_id: Union[str, int], price: int, size: int
     ) -> APIData:
         """
         Cancel and replace order.
@@ -362,7 +334,7 @@ class LedgerX:
 
         return response.get("data")
 
-    def get_current_book_state(self, contract_id: str) -> APIData:
+    def get_current_book_state(self, contract_id: Union[str, int]) -> APIData:
         """
         Request the current book state for a contract
 
@@ -382,3 +354,40 @@ class LedgerX:
         )
 
         return response.get("data")
+
+    def _request(self, method: str, url: str, data: Optional[dict] = None) -> APIData:
+        """Utility method for submitting HTTP requests.
+
+        Args:
+            method: The type of HTTP request ("POST", "GET", "DELETE", etc)
+            url: The endpoint URL.
+            data: The payload parameters, if any.
+
+        Returns:
+            The API response.
+        """
+        headers = {"Authorization": "JWT " + self._jwt_token}
+
+        opts = {
+            "headers": headers,
+            "allow_redirects": False,
+        }
+
+        if method.upper() in ["GET", "DELETE"]:
+            opts["params"] = data
+        else:
+            opts["json"] = data
+
+        response = self._session.request(method, url, **opts)
+
+        try:
+            response.raise_for_status()
+        except HTTPError as error:
+            print("error: ", error)
+            return {}
+
+        if response.text != "":
+            return response.json()
+        else:
+            # return status code for empty response
+            return {"data": {"status": response.status_code}}

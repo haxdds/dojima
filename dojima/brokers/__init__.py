@@ -1,1 +1,1 @@
-from ledgerx import LedgerX
+from .ledgerx import LedgerX
